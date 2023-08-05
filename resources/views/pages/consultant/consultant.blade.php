@@ -6,12 +6,12 @@
 @section('content')
 <div class="page-header">
     <div>
-        <h1 class="page-title">Consultanats</h1>
+        <h1 class="page-title">Consultants</h1>
     </div>
     <div class="ms-auto pageheader-btn">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Consultanats</li>
+            <li class="breadcrumb-item active" aria-current="page">Consultants</li>
         </ol>
     </div>
 </div>
@@ -33,18 +33,21 @@
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">No</th>
+                                <th class="wd-15p border-bottom-0">Code</th>
                                 <th class="wd-15p border-bottom-0">First Name</th>
+                                <th class="wd-15p border-bottom-0">First Name</th>
+                                <th class="wd-15p border-bottom-0">Date Of Birth</th>
                                 <th class="wd-15p border-bottom-0">Nic</th>
                                 <th class="wd-20p border-bottom-0">Mobile</th>
                                 <th class="wd-15p border-bottom-0">Gender</th>
-                                <th class="wd-10p border-bottom-0">Type</th>
-                                <th class="wd-25p border-bottom-0">Address</th>
+                                <th class="wd-10p border-bottom-0">Email</th>
+                                <th class="wd-25p border-bottom-0">Location</th>
                                 <th class="wd-10p border-bottom-0">Status</th>
                                 <th class="wd-10p border-bottom-0"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($consultants as $row)
+                           {{-- @foreach ($customers as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $row->customer_first_name }}</td>
@@ -85,7 +88,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
@@ -101,13 +104,13 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createFormModal">Create Consultanat</h5>
+                <h5 class="modal-title" id="createFormModal">Create Jobseeker</h5>
                 <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
             </div>
 
             <div class="modal-body">
                 {{-- class="needs-validation" novalidate="" --}}
-                <form method="POST" action="{{ route('customer.store') }}">
+                <form method="POST" {{--action="{{ route('customer.store') }}"--}}>
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ old('id') }}">
                     <div class="row">
@@ -193,9 +196,9 @@
                                 <div>
                                     <select class="form-select" required name="customer_type_id" id="customer_type_id">
                                         <option selected disabled value="">Choose...</option>
-                                        @foreach ($customer_types as $item)
+                                        {{-- @foreach ($customer_types as $item)
                                         <option value="{{ $item->id }}" {{ (old('customer_type_id') == $item->id) ? 'selected' : '' }}>{{ $item->customer_type_name }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                     <p style="color:Tomato"> @error('customer_type_id'){{ $message }} @enderror</p>
                                 </div>
