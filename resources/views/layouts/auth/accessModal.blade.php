@@ -39,7 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($model_list as $row)
+                           {{-- @foreach ($model_list as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $row->name }}</td>
@@ -57,7 +57,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach--}}
                         </tbody>
                     </table>
                 </div>

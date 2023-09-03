@@ -38,11 +38,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{--@foreach ($roles as $row)
+                            {{--@foreach ($jobtype as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row->role_name }}</td>
-                            <td>{{ $row->description }}</td>
+                            <td>{{ $row->job_type_name }}</td>
+                            <td>
+                                @if ($row->is_active)
+                                <button data-url="{{ route('jobtype.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
+                                @else
+                                <button data-url="{{ route('jobtype.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
+                                @endif
+                            </td>
                             <td>
                                 <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-role_name="{{ $row->role_name }}" data-description="{{ $row->description }}">
                                     <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
@@ -80,8 +86,8 @@
                             <div class="form-group">
                                 <label>Job Type Name<span class="text-danger">*</span></label>
                                 <div>
-                                    <input type="text" class="form-control" id="role_name" name="role_name" placeholder="Enter the  Name" value="{{ old('role_name') }}" required />
-                                    <p style="color:Tomato"> @error('role_name'){{ $message }} @enderror</p>
+                                    <input type="text" class="form-control" id="job_type_name" name="job_type_name" placeholder="Enter the  Job Type" value="{{ old('job_type_name') }}" required />
+                                    <p style="color:Tomato"> @error('job_type_name'){{ $message }} @enderror</p>
                                 </div>
                             </div>
                         </div>

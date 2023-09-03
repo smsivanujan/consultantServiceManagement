@@ -33,46 +33,27 @@
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">No</th>
-                                <th class="wd-15p border-bottom-0">Code</th>
-                                <th class="wd-15p border-bottom-0">First Name</th>
-                                <th class="wd-15p border-bottom-0">First Name</th>
-                                <th class="wd-15p border-bottom-0">Date Of Birth</th>
-                                <th class="wd-15p border-bottom-0">Nic</th>
-                                <th class="wd-20p border-bottom-0">Mobile</th>
-                                <th class="wd-15p border-bottom-0">Gender</th>
-                                <th class="wd-10p border-bottom-0">Email</th>
-                                <th class="wd-25p border-bottom-0">Location</th>
+                                <th class="wd-15p border-bottom-0">Appointment Code</th>
+                                <th class="wd-15p border-bottom-0">Deviation DateTime</th>
                                 <th class="wd-10p border-bottom-0">Status</th>
                                 <th class="wd-10p border-bottom-0"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($customers as $row)
+                            {{-- @foreach ($appoinment_deviations as $row)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row->customer_first_name }}</td>
-                            <td>{{ $row->nic }}</td>
-                            <td>{{ $row->phone_number }}</td>
-                            <td>
-                                @if ($row->gender == 1)
-                                Male
-                                @elseif ($row->gender == 2)
-                                Female
-                                @else
-                                Third gender
-                                @endif
-                            </td>
-                            <td>{{ $row->customer_type_name }}</td>
-                            <td>{{ $row->address }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->appointment_code }}</td>
+                            <td>{{ $row->deviation_dateTime }}</td>
                             <td>
                                 @if ($row->is_active)
-                                <button data-url="{{ route('customer.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
+                                <button data-url="{{ route('appoinment_deviation.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
                                 @else
-                                <button data-url="{{ route('customer.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
+                                <button data-url="{{ route('appoinment_deviation.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-customer_first_name="{{ $row->customer_first_name }}" data-customer_sur_name="{{ $row->customer_sur_name }}" data-nic="{{ $row->nic }}" data-date_of_birth="{{ $row->date_of_birth }}" data-phone_number="{{ $row->phone_number }}" data-email="{{ $row->email }}" data-address="{{ $row->address }}" data-description="{{ $row->description }}" data-gender="{{ $row->gender }}" data-customer_type_id="{{ $row->customer_type_id }}">
+                                <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-appointment_id="{{ $row->appointment_id }}" data-deviation_dateTime="{{ $row->deviation_dateTime }}" data-is_active="{{ $row->is_active }}">
                                     <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
                                 </a>
                             </td>
@@ -108,9 +89,9 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label> Deviation Date and Time<span class="text-danger">*</span></label>
+                                <label> Deviation Date & Time<span class="text-danger">*</span></label>
                                 <div>
-                                    <input type="date" class="form-control" id="appointment_dateTime" name="appointment_dateTime" value="{{ old('appointment_dateTime') }}" required max="{{ date('Y-m-d H:m') }}" />
+                                    <input type="datetime-local" class="form-control" id="appointment_dateTime" name="appointment_dateTime" value="{{ old('appointment_dateTime') }}" required max="{{ date('Y-m-d H:m') }}" />
                                     <p style="color:Tomato"> @error('appointment_dateTime'){{ $message }} @enderror</p>
                                 </div>
                             </div>
@@ -137,7 +118,7 @@
                             <div class="form-group">
                                 <label>Staus<span class="text-danger">*</span></label>
                                 <div>
-                                    <select class="form-select" required name="is_active" id="is_active">
+                                    <select class="form-select" required name="is_active" id="appointment_id">
                                         <option selected value="1">Active</option>
                                         <option value="2">Inactive</option>
                                         <option value="3">Blocked</option>
@@ -186,16 +167,9 @@
         // create
         $('#create_').click(function() {
             $("#id").val(0);
-            $("#customer_first_name").val('');
-            $("#customer_sur_name").val('');
-            $("#nic").val('');
-            $("#date_of_birth").val('');
-            $("#phone_number").val('');
-            $("#email").val('');
-            $("#address").val('');
-            $("#description").val('');
-            $("#gender").val('');
-            $("#customer_type_id").val('');
+            $("#appointment_dateTime").val('');
+            $("#appointment_id").val('');
+            $("#is_active").val('');
 
             $('#createFormModal').html('Create Appointment Deviation');
             $('p').html('');
@@ -206,16 +180,9 @@
         // update
         $('.edit').click(function() {
             $("#id").val($(this).attr('data-id'));
-            $("#customer_first_name").val($(this).attr('data-customer_first_name'));
-            $("#customer_sur_name").val($(this).attr('data-customer_sur_name'));
-            $("#nic").val($(this).attr('data-nic'));
-            $("#date_of_birth").val($(this).attr('data-date_of_birth'));
-            $("#phone_number").val($(this).attr('data-phone_number'));
-            $("#email").val($(this).attr('data-email'));
-            $("#address").val($(this).attr('data-address'));
-            $("#description").val($(this).attr('data-description'));
-            $("#gender").val($(this).attr('data-gender'));
-            $("#customer_type_id").val($(this).attr('data-customer_type_id'));
+            $("#appointment_dateTime").val($(this).attr('data-appointment_dateTime'));
+            $("#appointment_id").val($(this).attr('data-appointment_id'));
+            $("#is_active").val($(this).attr('data-is_active'));
 
             $('#createFormModal').html('Update Appointment Deviation');
             $('p').html('');
@@ -231,7 +198,7 @@
 
             swal({
                     title: 'Are you sure?',
-                    text: 'Change Customer Status !',
+                    text: 'Change Appointment Deviation Status !',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
@@ -246,7 +213,7 @@
                                 id: id
                             },
                             success: function(res) {
-                                swal('Poof! Change Customer Status!', {
+                                swal('Poof! Change Appointment Deviation Status!', {
                                     icon: 'success',
                                     timer: 1000,
                                 });

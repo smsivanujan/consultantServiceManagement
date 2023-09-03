@@ -14,7 +14,7 @@ class AccessModelController extends Controller
     {
         // $access_model = acesssModel::all();
         // return view('layouts.auth.accessmodel')->with('model_list', $access_model);
-        return view('layouts.auth.accessmodel');
+        return view('layouts.auth.accessModal');
     }
 
     /**

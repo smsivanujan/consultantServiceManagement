@@ -47,46 +47,35 @@
                             </tr>
                         </thead>
                         <tbody>
-                           {{-- @foreach ($customers as $row)
+                            {{-- @foreach ($customers as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $row->customer_first_name }}</td>
-                                <td>{{ $row->nic }}</td>
-                                <td>{{ $row->phone_number }}</td>
-                                <td>
-                                    @if ($row->gender == 1)
-                                    Male
-                                    @elseif ($row->gender == 2)
-                                    Female
-                                    @else
-                                    Third gender
-                                    @endif
-                                </td>
-                                <td>{{ $row->customer_type_name }}</td>
-                                <td>{{ $row->address }}</td>
-                                <td>
-                                    @if ($row->is_active)
-                                    <button data-url="{{ route('customer.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
-                                    @else
-                                    <button data-url="{{ route('customer.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a class="btn btn-blue edit" title="Edit" 
-                                    data-id="{{ $row->id }}" 
-                                    data-customer_first_name="{{ $row->customer_first_name }}" 
-                                    data-customer_sur_name="{{ $row->customer_sur_name }}" 
-                                    data-nic="{{ $row->nic }}" 
-                                    data-date_of_birth="{{ $row->date_of_birth }}" 
-                                    data-phone_number="{{ $row->phone_number }}" 
-                                    data-email="{{ $row->email }}" 
-                                    data-address="{{ $row->address }}" 
-                                    data-description="{{ $row->description }}" 
-                                    data-gender="{{ $row->gender }}" 
-                                    data-customer_type_id="{{ $row->customer_type_id }}">
-                                        <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
-                                    </a>
-                                </td>
+                            <td>{{ $row->customer_first_name }}</td>
+                            <td>{{ $row->nic }}</td>
+                            <td>{{ $row->phone_number }}</td>
+                            <td>
+                                @if ($row->gender == 1)
+                                Male
+                                @elseif ($row->gender == 2)
+                                Female
+                                @else
+                                Third gender
+                                @endif
+                            </td>
+                            <td>{{ $row->customer_type_name }}</td>
+                            <td>{{ $row->address }}</td>
+                            <td>
+                                @if ($row->is_active)
+                                <button data-url="{{ route('consultant.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
+                                @else
+                                <button data-url="{{ route('consultant.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
+                                @endif
+                            </td>
+                            <td>
+                                <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-consultant_first_name="{{ $row->consultant_first_name }}" data-consultant_last_name="{{ $row->consultant_last_name }}" data-nic="{{ $row->nic }}" data-dateofbirth="{{ $row->dateofbirth }}" data-phone_number="{{ $row->phone_number }}" data-email="{{ $row->email }}" data-location="{{ $row->location }}" data-note="{{ $row->note }}" data-gender="{{ $row->gender }}">
+                                    <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
+                                </a>
+                            </td>
                             </tr>
                             @endforeach --}}
                         </tbody>
@@ -110,7 +99,7 @@
 
             <div class="modal-body">
                 {{-- class="needs-validation" novalidate="" --}}
-                <form method="POST" {{--action="{{ route('customer.store') }}"--}}>
+                <form method="POST" {{--action="{{ route('consultant.store') }}"--}}>
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ old('id') }}">
                     <div class="row">
@@ -118,18 +107,18 @@
                             <div class="form-group">
                                 <label>First Name<span class="text-danger">*</span></label>
                                 <div>
-                                    <input type="text" class="form-control" id="customer_first_name" name="customer_first_name" placeholder="Enter the  Name" value="{{ old('customer_first_name') }}" required />
-                                    <p style="color:Tomato"> @error('customer_first_name'){{ $message }} @enderror</p>
+                                    <input type="text" class="form-control" id="consultant_first_name" name="consultant_first_name" placeholder="Enter the First Name" value="{{ old('consultant_first_name') }}" required />
+                                    <p style="color:Tomato"> @error('consultant_first_name'){{ $message }} @enderror</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Sur Name<span class="text-danger">*</span></label>
+                                <label>Last Name<span class="text-danger">*</span></label>
                                 <div>
-                                    <input type="text" class="form-control" id="customer_sur_name" name="customer_sur_name" placeholder="Enter the Sur Name" value="{{ old('customer_sur_name') }}" required />
-                                    <p style="color:Tomato"> @error('customer_sur_name'){{ $message }} @enderror</p>
+                                    <input type="text" class="form-control" id="consultant_last_name" name="consultant_last_name" placeholder="Enter the Last Name" value="{{ old('consultant_last_name') }}" required />
+                                    <p style="color:Tomato"> @error('consultant_last_name'){{ $message }} @enderror</p>
 
                                 </div>
                             </div>
@@ -159,8 +148,8 @@
                             <div class="form-group">
                                 <label>Date of Birth<span class="text-danger">*</span></label>
                                 <div>
-                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth') }}" required max="{{ date('Y-m-d') }}" />
-                                    <p style="color:Tomato"> @error('date_of_birth'){{ $message }} @enderror</p>
+                                    <input type="date" class="form-control" id="dateofbirth" name="dateofbirth" value="{{ old('dateofbirth') }}" required max="{{ date('Y-m-d') }}" />
+                                    <p style="color:Tomato"> @error('dateofbirth'){{ $message }} @enderror</p>
                                 </div>
                             </div>
                         </div>
@@ -192,37 +181,22 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Customer Type<span class="text-danger">*</span></label>
+                                <label>Location<span class="text-danger">*</span></label>
                                 <div>
-                                    <select class="form-select" required name="customer_type_id" id="customer_type_id">
-                                        <option selected disabled value="">Choose...</option>
-                                        {{-- @foreach ($customer_types as $item)
-                                        <option value="{{ $item->id }}" {{ (old('customer_type_id') == $item->id) ? 'selected' : '' }}>{{ $item->customer_type_name }}</option>
-                                        @endforeach --}}
-                                    </select>
-                                    <p style="color:Tomato"> @error('customer_type_id'){{ $message }} @enderror</p>
+                                    <textarea type="text" class="form-control" rows="1" id="location" name="location" placeholder="Enter the location">{{ old('location') }}</textarea>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Address<span class="text-danger">*</span></label>
-                                <div>
-                                    <textarea type="text" class="form-control" rows="1" id="address" name="address" placeholder="Enter the address">{{ old('address') }}</textarea>
-                                </div>
-                                <p style="color:Tomato"> @error('address'){{ $message }} @enderror
+                                <p style="color:Tomato"> @error('location'){{ $message }} @enderror
                                 </p>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Note</label>
                                 <div>
-                                    <textarea type="text" class="form-control" rows="1" id="description" name="description" placeholder="Enter the description">{{ old('description') }}</textarea>
+                                    <textarea type="text" class="form-control" rows="1" id="note" name="note" placeholder="Enter the note">{{ old('note') }}</textarea>
                                 </div>
-                                <p style="color:Tomato"> @error('description'){{ $message }} @enderror
+                                <p style="color:Tomato"> @error('note'){{ $message }} @enderror
                                 </p>
                             </div>
                         </div>
@@ -245,6 +219,46 @@
                         </div>
                     </div>
 
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Spezilized Countries</label>
+                                <ul>
+                                    <li class="select-client">
+                                        <select class="form-control select2-style1" data-placeholder="Choose One" multiple>
+                                            <option label="Choose one"></option>
+                                            <option value="1">United Kingdom</option>
+                                            <option value="2">America</option>
+                                            <option value="13">India</option>
+                                            <option value="15">Doha</option>
+                                            <option value="3">Dubai</option>
+
+                                        </select>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="form-label">Spezilized Jobs</label>
+                                <ul>
+                                    <li class="select-client">
+                                        <select class="form-control select2-style1" data-placeholder="Choose One" multiple>
+                                            <option label="Choose one"></option>
+                                            <option value="1">Software Engineer</option>
+                                            <option value="2">Plumber</option>
+                                            <option value="13">Electrician</option>
+                                            <option value="15">Driver</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="form-group" align="right">
                         <button type="reset" class="btn btn-danger">Reset</button>
@@ -260,6 +274,12 @@
 @section('scripts')
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+<!-- SELECT2 JS -->
+<script src="../assets/plugins/select2/select2.full.min.js"></script>
+
+<!-- FORM ELEMENTS JS -->
+<script src="../assets/js/formelementadvnced.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -280,16 +300,15 @@
         // create
         $('#create_').click(function() {
             $("#id").val(0);
-            $("#customer_first_name").val('');
-            $("#customer_sur_name").val('');
+            $("#consultant_first_name").val('');
+            $("#consultant_last_name").val('');
             $("#nic").val('');
-            $("#date_of_birth").val('');
+            $("#dateofbirth").val('');
             $("#phone_number").val('');
             $("#email").val('');
-            $("#address").val('');
-            $("#description").val('');
+            $("#location").val('');
+            $("#note").val('');
             $("#gender").val('');
-            $("#customer_type_id").val('');
 
             $('#createFormModal').html('Create Customer');
             $('p').html('');
@@ -300,16 +319,15 @@
         // update
         $('.edit').click(function() {
             $("#id").val($(this).attr('data-id'));
-            $("#customer_first_name").val($(this).attr('data-customer_first_name'));
-            $("#customer_sur_name").val($(this).attr('data-customer_sur_name'));
+            $("#consultant_first_name").val($(this).attr('data-consultant_first_name'));
+            $("#consultant_last_name").val($(this).attr('data-consultant_last_name'));
             $("#nic").val($(this).attr('data-nic'));
-            $("#date_of_birth").val($(this).attr('data-date_of_birth'));
+            $("#dateofbirth").val($(this).attr('data-dateofbirth'));
             $("#phone_number").val($(this).attr('data-phone_number'));
             $("#email").val($(this).attr('data-email'));
-            $("#address").val($(this).attr('data-address'));
-            $("#description").val($(this).attr('data-description'));
+            $("#location").val($(this).attr('data-location'));
+            $("#note").val($(this).attr('data-note'));
             $("#gender").val($(this).attr('data-gender'));
-            $("#customer_type_id").val($(this).attr('data-customer_type_id'));
 
             $('#createFormModal').html('Update Customer');
             $('p').html('');

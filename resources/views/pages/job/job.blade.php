@@ -39,16 +39,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{--@foreach ($roles as $row)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row->role_name }}</td>
-                            <td>{{ $row->description }}</td>
-                            <td>
-                                <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-role_name="{{ $row->role_name }}" data-description="{{ $row->description }}">
-                                    <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
-                                </a>
+                            {{--@foreach ($jobs as $row)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $row->job_name }}</td>
+                                <td>{{ $row->job_type_name }}</td>
+                                <td>
+                                @if ($row->is_active)
+                                <button data-url="{{ route('job.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
+                                @else
+                                <button data-url="{{ route('job.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
+                                @endif
                             </td>
+                                <td>
+                                    <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-job_name="{{ $row->job_name }}" data-job_type_id="{{ $row->job_type_id }}" data-is_active="{{ $row->is_active }}">
+                                        <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach--}}
                         </tbody>
@@ -72,7 +79,7 @@
 
             <div class="modal-body">
                 {{-- class="needs-validation" novalidate="" --}}
-                <form method="POST" action="{{ route('jobtype.store') }}">
+                <form method="POST" action="{{ route('job.store') }}">
                     @csrf
                     <input type="hidden" name="id" id="id" value="{{ old('id') }}">
 
@@ -82,8 +89,8 @@
                             <div class="form-group">
                                 <label>Job Name<span class="text-danger">*</span></label>
                                 <div>
-                                    <input type="text" class="form-control" id="role_name" name="role_name" placeholder="Enter the  Name" value="{{ old('role_name') }}" required />
-                                    <p style="color:Tomato"> @error('role_name'){{ $message }} @enderror</p>
+                                    <input type="text" class="form-control" id="job_name" name="job_name" placeholder="Enter the Job Name" value="{{ old('job_name') }}" required />
+                                    <p style="color:Tomato"> @error('job_name'){{ $message }} @enderror</p>
                                 </div>
                             </div>
                         </div>
@@ -94,11 +101,11 @@
                                 <div>
                                     <select class="form-select" required name="job_type_id" id="job_type_id">
                                         <option selected disabled value="">Choose...</option>
-                                        {{-- @foreach ($customer_types as $item)
-                                        <option value="{{ $item->id }}" {{ (old('customer_type_id') == $item->id) ? 'selected' : '' }}>{{ $item->customer_type_name }}</option>
+                                        {{-- @foreach ($job_types as $item)
+                                        <option value="{{ $item->id }}" {{ (old('job_type_id') == $item->id) ? 'selected' : '' }}>{{ $item->job_type_name }}</option>
                                         @endforeach --}}
                                     </select>
-                                    <p style="color:Tomato"> @error('customer_type_id'){{ $message }} @enderror</p>
+                                    <p style="color:Tomato"> @error('job_type_id'){{ $message }} @enderror</p>
                                 </div>
                             </div>
                         </div>

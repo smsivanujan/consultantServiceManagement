@@ -33,46 +33,32 @@
                         <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">No</th>
-                                <th class="wd-15p border-bottom-0">Code</th>
-                                <th class="wd-15p border-bottom-0">First Name</th>
-                                <th class="wd-15p border-bottom-0">First Name</th>
-                                <th class="wd-15p border-bottom-0">Date Of Birth</th>
-                                <th class="wd-15p border-bottom-0">Nic</th>
-                                <th class="wd-20p border-bottom-0">Mobile</th>
-                                <th class="wd-15p border-bottom-0">Gender</th>
-                                <th class="wd-10p border-bottom-0">Email</th>
-                                <th class="wd-25p border-bottom-0">Location</th>
+                                <th class="wd-15p border-bottom-0">Appointment Date</th>
+                                <th class="wd-15p border-bottom-0">Appointment Code</th>
+                                <th class="wd-15p border-bottom-0">Job Seeker</th>
+                                <th class="wd-15p border-bottom-0">Consultant</th>
                                 <th class="wd-10p border-bottom-0">Status</th>
                                 <th class="wd-10p border-bottom-0"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($customers as $row)
+                            {{-- @foreach ($appointments as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                            <td>{{ $row->customer_first_name }}</td>
-                            <td>{{ $row->nic }}</td>
-                            <td>{{ $row->phone_number }}</td>
-                            <td>
-                                @if ($row->gender == 1)
-                                Male
-                                @elseif ($row->gender == 2)
-                                Female
-                                @else
-                                Third gender
-                                @endif
-                            </td>
-                            <td>{{ $row->customer_type_name }}</td>
-                            <td>{{ $row->address }}</td>
+                            <td>{{ $row->appointment_dateTime }}</td>
+                            <td>{{ $row->appointment_code }}</td>
+                            <td>{{ $row->appointment_type_name }}</td>
+                            <td>{{ $row->consultant_first_name }} {{ $row->consultant_last_name }}</td>
+                            <td>{{ $row->job_seeker_first_name }} {{ $row->job_seeker_last_name }}</td>
                             <td>
                                 @if ($row->is_active)
-                                <button data-url="{{ route('customer.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
+                                <button data-url="{{ route('appointment.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-green btn-sm w-100 changeStatus">Active</button>
                                 @else
-                                <button data-url="{{ route('customer.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
+                                <button data-url="{{ route('appointment.status-change') }}" data-id="{{ $row->id }}" data-is_active="{{ $row->is_active }}" class="btn btn-red btn-sm w-100 changeStatus">Deactive</button>
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-customer_first_name="{{ $row->customer_first_name }}" data-customer_sur_name="{{ $row->customer_sur_name }}" data-nic="{{ $row->nic }}" data-date_of_birth="{{ $row->date_of_birth }}" data-phone_number="{{ $row->phone_number }}" data-email="{{ $row->email }}" data-address="{{ $row->address }}" data-description="{{ $row->description }}" data-gender="{{ $row->gender }}" data-customer_type_id="{{ $row->customer_type_id }}">
+                                <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-appointment_dateTime="{{ $row->appointment_dateTime }}" data-appointment_code="{{ $row->appointment_code }}" data-job_seeker_id="{{ $row->job_seeker_id }}" data-consultant_id="{{ $row->consultant_id }}" data-appointment_type_id="{{ $row->appointment_type_id }}">
                                     <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
                                 </a>
                             </td>
@@ -104,19 +90,26 @@
                     <input type="hidden" name="id" id="id" value="{{ old('id') }}">
                     <div class="row">
 
-
-
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Date and Time<span class="text-danger">*</span></label>
+                                <label>Appointment Code<span class="text-danger">*</span></label>
                                 <div>
-                                    <input type="date" class="form-control" id="appointment_dateTime" name="appointment_dateTime" value="{{ old('appointment_dateTime') }}" required max="{{ date('Y-m-d H:m') }}" />
-                                    <p style="color:Tomato"> @error('appointment_dateTime'){{ $message }} @enderror</p>
+                                    <input type="text" class="form-control" id="appointment_code" name="appointment_code" placeholder="Appointment Code" value="{{ old('appointment_code') }}" required />
+                                    <p style="color:Tomato"> @error('appointment_code'){{ $message }} @enderror</p>
+
                                 </div>
                             </div>
                         </div>
 
-
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Date & Time<span class="text-danger">*</span></label>
+                                <div>
+                                    <input type="datetime-local" class="form-control" id="appointment_dateTime" name="appointment_dateTime" value="{{ old('appointment_dateTime') }}" required max="{{ date('Y-m-d H:m') }}" />
+                                    <p style="color:Tomato"> @error('appointment_dateTime'){{ $message }} @enderror</p>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -132,8 +125,6 @@
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -164,7 +155,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -200,6 +190,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
+
+
 <script>
     $(document).ready(function() {
 
@@ -219,16 +211,12 @@
         // create
         $('#create_').click(function() {
             $("#id").val(0);
-            $("#customer_first_name").val('');
-            $("#customer_sur_name").val('');
-            $("#nic").val('');
-            $("#date_of_birth").val('');
-            $("#phone_number").val('');
-            $("#email").val('');
-            $("#address").val('');
-            $("#description").val('');
-            $("#gender").val('');
-            $("#customer_type_id").val('');
+            $("#appointment_code").val('');
+            $("#appointment_dateTime").val('');
+            $("#job_seeker_id").val('');
+            $("#consultant_id").val('');
+            $("#appointment_type_id").val('');
+            $("#is_active").val('');
 
             $('#createFormModal').html('Create Appointment');
             $('p').html('');
@@ -239,16 +227,11 @@
         // update
         $('.edit').click(function() {
             $("#id").val($(this).attr('data-id'));
-            $("#customer_first_name").val($(this).attr('data-customer_first_name'));
-            $("#customer_sur_name").val($(this).attr('data-customer_sur_name'));
-            $("#nic").val($(this).attr('data-nic'));
-            $("#date_of_birth").val($(this).attr('data-date_of_birth'));
-            $("#phone_number").val($(this).attr('data-phone_number'));
-            $("#email").val($(this).attr('data-email'));
-            $("#address").val($(this).attr('data-address'));
-            $("#description").val($(this).attr('data-description'));
-            $("#gender").val($(this).attr('data-gender'));
-            $("#customer_type_id").val($(this).attr('data-customer_type_id'));
+            $("#appointment_code").val($(this).attr('data-appointment_code'));
+            $("#appointment_dateTime").val($(this).attr('data-appointment_dateTime'));
+            $("#job_seeker_id").val($(this).attr('data-job_seeker_id'));
+            $("#consultant_id").val($(this).attr('data-consultant_id'));
+            $("#appointment_type_id").val($(this).attr('data-appointment_type_id'));
 
             $('#createFormModal').html('Update Appointment');
             $('p').html('');
@@ -264,7 +247,7 @@
 
             swal({
                     title: 'Are you sure?',
-                    text: 'Change Customer Status !',
+                    text: 'Change Appointment Status !',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
@@ -279,7 +262,7 @@
                                 id: id
                             },
                             success: function(res) {
-                                swal('Poof! Change Customer Status!', {
+                                swal('Poof! Change Appointment Status!', {
                                     icon: 'success',
                                     timer: 1000,
                                 });

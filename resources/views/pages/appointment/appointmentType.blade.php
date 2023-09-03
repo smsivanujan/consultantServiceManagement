@@ -44,7 +44,7 @@
                                 <td>{{ $row->appointment_type_name }}</td>
                                 <td>{{ $row->is_active }}</td>
                                 <td>
-                                    <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-role_name="{{ $row->role_name }}" data-description="{{ $row->description }}">
+                                    <a class="btn btn-blue edit" title="Edit" data-id="{{ $row->id }}" data-appointment_type_name="{{ $row->appointment_type_name }}" data-is_active="{{ $row->is_active }}">
                                         <i style="color:rgb(226, 210, 210);cursor: pointer" class="fa fa-edit"></i>
                                     </a>
                                 </td>
