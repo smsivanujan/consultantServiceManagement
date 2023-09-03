@@ -12,7 +12,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('pages.user.role');
+        return view('layouts.auth.role');
     }
 
     /**

@@ -106,8 +106,8 @@
                                     </svg>
                                     <span class="side-menu__label">Logs</span><i class="angle fa fa-angle-right"></i></a>
                                 <ul class="slide-menu">
-                                    {{--<li><a href="{{ route('activitylog.index') }}" class="slide-item">Activity Log</a></li>
-                                    <li><a href="{{ route('loginlog.index') }}" class="slide-item">Login Logs</a></li>--}}
+                                    <li><a href="{{ route('activitylog.index') }}" class="slide-item">Activity Log</a></li>
+                                    <li><a href="{{ route('loginlog.index') }}" class="slide-item">Login Logs</a></li>
                                 </ul>
                             </li>
 
@@ -124,7 +124,8 @@
                                     <span class="side-menu__label">Settings</span><i class="angle fa fa-angle-right"></i></a>
                                 <ul class="slide-menu">
                                     <li><a href="{{ route('access_model.index') }}" class="slide-item">Authentication</a></li>
-                                    {{--<li><a href="{{ route('user.index') }}" class="slide-item">Users</a></li>--}}
+                                    <li><a href="{{ route('user.index') }}" class="slide-item">Users</a></li>
+                                    <li><a href="{{ route('role.index') }}" class="slide-item">Roles</a></li>
                                 </ul>
                             </li>
 

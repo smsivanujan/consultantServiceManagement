@@ -43,12 +43,12 @@ Route::get('/', [DashboardController::class, 'dashboard'])->name('index.dashboar
 
 // Route::group(['middleware' => ['auth']], function () { //'CheckAccess'
 
-    Route::get('/activity-log', [ActivitylogController::class, 'view'])->name('activity-log.view');
+    // Route::get('/activity-log', [ActivitylogController::class, 'view'])->name('activity-log.view');
 
     // ----------- Create user -----
-    // Route::get('/admin/user', [UserController::class, 'index'])->name('user.index');
-    // Route::post('/admin/user/store', [UserController::class, 'store'])->name('user.store');
-    // Route::post('/admin/user/destroy', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::get('/admin/user', [UserController::class, 'index'])->name('user.index');
+    Route::post('/admin/user/store', [UserController::class, 'store'])->name('user.store');
+    Route::post('/admin/user/destroy', [UserController::class, 'destroy'])->name('user.destroy');
 
     // ------------- Create Access Model-------------
     Route::get('/admin/accessModel', [AccessModelController::class, 'index'])->name('access_model.index');
@@ -75,7 +75,7 @@ Route::get('/', [DashboardController::class, 'dashboard'])->name('index.dashboar
     Route::post('activitylog/store', [ActivitylogController::class, 'store'])->name('activitylog.store');
 
      //loginLog
-     Route::get('loginLog', [LoginlogController::class, 'index'])->name('loginLog.index');
+     Route::get('loginLog', [LoginlogController::class, 'index'])->name('loginlog.index');
      Route::post('loginLog/store', [LoginlogController::class, 'store'])->name('loginLog.store');
 
     //role

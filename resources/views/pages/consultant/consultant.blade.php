@@ -271,9 +271,9 @@
             var id = $('#id').val();
 
             if (id == 0) {
-                $('#createFormModal').html('Create Customer');
+                $('#createFormModal').html('Create Consultant');
             } else {
-                $('#createFormModal').html('Update Customer');
+                $('#createFormModal').html('Update Consultant');
             }
         }
 

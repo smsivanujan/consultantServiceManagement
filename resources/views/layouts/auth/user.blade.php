@@ -38,7 +38,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $row)
+                           {{-- @foreach ($users as $row)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $row->name }}</td>
@@ -56,7 +56,7 @@
                                     <a href="{{ route('permission.index', ['id' => $row->id]) }}" class="btn btn-sm btn-success"> <i class="fa fa-plus"></i>Permission</a>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach--}}
                         </tbody>
                     </table>
                 </div>
