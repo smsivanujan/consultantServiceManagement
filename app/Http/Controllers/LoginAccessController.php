@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\consultantAvailableTime;
+use App\Models\LoginAccess;
 use Illuminate\Http\Request;
 
-class ConsultantAvailableTimeController extends Controller
+class LoginAccessController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.consultant.consultantAvailable');
+        return view('layouts.auth.login');
     }
 
     /**
@@ -34,7 +34,7 @@ class ConsultantAvailableTimeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(consultantAvailableTime $consultantAvailableTime)
+    public function show(LoginAccess $loginAccess)
     {
         //
     }
@@ -42,7 +42,7 @@ class ConsultantAvailableTimeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(consultantAvailableTime $consultantAvailableTime)
+    public function edit(LoginAccess $loginAccess)
     {
         //
     }
@@ -50,7 +50,7 @@ class ConsultantAvailableTimeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, consultantAvailableTime $consultantAvailableTime)
+    public function update(Request $request, LoginAccess $loginAccess)
     {
         //
     }
@@ -58,7 +58,7 @@ class ConsultantAvailableTimeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(consultantAvailableTime $consultantAvailableTime)
+    public function destroy(LoginAccess $loginAccess)
     {
         //
     }

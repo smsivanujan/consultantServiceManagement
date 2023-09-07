@@ -233,10 +233,10 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="form-label">Target Countries For Job</label>
+                                <label class="form-label">Spezilized Countries</label>
                                 <ul>
                                     <li class="select-client">
-                                        <select class="form-control select2-style1" data-placeholder="Choose One" multiple>
+                                        <select class="form-control select2-style1" id="countries" name="countries[]" data-placeholder="Choose One" multiple>
                                             <option label="Choose one"></option>
                                             <option value="1">United Kingdom</option>
                                             <option value="2">America</option>
@@ -249,15 +249,13 @@
                                 </ul>
                             </div>
                         </div>
-                    <!-- </div>
 
-                    <div class="row"> -->
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="form-label">Target Jobs</label>
+                                <label class="form-label">Spezilized Jobs</label>
                                 <ul>
                                     <li class="select-client">
-                                        <select class="form-control select2-style1" data-placeholder="Choose One" multiple>
+                                        <select class="form-control select2-style1" id="jobs" name="jobs[]" data-placeholder="Choose One" multiple>
                                             <option label="Choose one"></option>
                                             <option value="1">Software Engineer</option>
                                             <option value="2">Plumber</option>

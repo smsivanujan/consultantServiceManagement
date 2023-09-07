@@ -1,6 +1,6 @@
 
 		<!-- TITLE -->
-		<title>Emposea Consultant Service</title>
+		<title>Wardhana Enterprises Consultant Service</title>
 
         <!-- FAVICON -->
         <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/brand/logo-2.png')}}" />

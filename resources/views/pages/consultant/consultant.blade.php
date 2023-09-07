@@ -227,7 +227,7 @@
                                 <label class="form-label">Spezilized Countries</label>
                                 <ul>
                                     <li class="select-client">
-                                        <select class="form-control select2-style1" data-placeholder="Choose One" multiple>
+                                        <select class="form-control select2-style1" id="countries" name="countries[]" data-placeholder="Choose One" multiple>
                                             <option label="Choose one"></option>
                                             <option value="1">United Kingdom</option>
                                             <option value="2">America</option>
@@ -246,7 +246,7 @@
                                 <label class="form-label">Spezilized Jobs</label>
                                 <ul>
                                     <li class="select-client">
-                                        <select class="form-control select2-style1" data-placeholder="Choose One" multiple>
+                                        <select class="form-control select2-style1" id="jobs" name="jobs[]" data-placeholder="Choose One" multiple>
                                             <option label="Choose one"></option>
                                             <option value="1">Software Engineer</option>
                                             <option value="2">Plumber</option>
@@ -310,7 +310,7 @@
             $("#note").val('');
             $("#gender").val('');
 
-            $('#createFormModal').html('Create Customer');
+            $('#createFormModal').html('Create Consultant');
             $('p').html('');
 
             $('#createModal').modal('show');
@@ -343,7 +343,7 @@
 
             swal({
                     title: 'Are you sure?',
-                    text: 'Change Customer Status !',
+                    text: 'Change Consultant Status !',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
@@ -358,7 +358,7 @@
                                 id: id
                             },
                             success: function(res) {
-                                swal('Poof! Change Customer Status!', {
+                                swal('Poof! Change Consultant Status!', {
                                     icon: 'success',
                                     timer: 1000,
                                 });

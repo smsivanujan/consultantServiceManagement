@@ -29,7 +29,7 @@
                         <div class="card card-primary">
                             <div class="card-header">
                                 {{-- <h4>Login</h4> --}}
-                                <img src="{{asset('assets/images/brand/login.png')}}" alt="images">
+                                <img src="{{asset('assets/images/brand/logo-3.png')}}" alt="images">
                             </div>
                             <div class="card-body">
                                 <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">

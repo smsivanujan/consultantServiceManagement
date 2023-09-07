@@ -41,6 +41,7 @@
                                 <ul class="slide-menu">
                                     <!-- <li class="side-menu-label1"><a href="javascript:void(0)">Customer</a></li> -->
                                     <li><a href="{{ route('consultant.index') }}" class="slide-item">Consultants</a></li>
+                                    <li><a href="{{ route('consultantavailable.index') }}" class="slide-item">Consultants Available</a></li>
                                 </ul>
                             </li>
 

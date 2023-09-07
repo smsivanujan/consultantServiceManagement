@@ -6,16 +6,19 @@ use App\Http\Controllers\ActivitylogController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AppointmentDeviationController;
 use App\Http\Controllers\AppointmentTypeController;
+use App\Http\Controllers\ConsultantAvailableTimeController;
 use App\Http\Controllers\ConsultantController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobseekerController;
 use App\Http\Controllers\JobTypeController;
+use App\Http\Controllers\LoginAccessController;
 use App\Http\Controllers\LoginlogController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\LoginAccess;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +41,7 @@ Route::get('/', [DashboardController::class, 'dashboard'])->name('index.dashboar
 // Route::get('/admin', [UserController::class, 'token'])->name('user.tokenx');
 // Route::get('/admin/login', [UserController::class, 'token']);
 
-// Route::post('/admin/login', [UserController::class, 'login'])->name('login');
+Route::get('/login', [LoginAccessController::class, 'index'])->name('login');
 // Route::get('/admin/logout', [UserController::class, 'logout'])->name('logout');
 
 // Route::group(['middleware' => ['auth']], function () { //'CheckAccess'
@@ -91,6 +94,8 @@ Route::get('/', [DashboardController::class, 'dashboard'])->name('index.dashboar
     Route::post('consultant/store', [ConsultantController::class, 'store'])->name('consultant.store');
     Route::get('consultant/status-change', [ConsultantController::class, 'statusChange'])->name('consultant.status-change');
 
+    Route::get('consultantavailable', [ConsultantAvailableTimeController::class, 'index'])->name('consultantavailable.index');
+
     //jobseeker
     Route::get('jobseeker', [JobseekerController::class, 'index'])->name('jobseeker.index');
     Route::post('jobseeker/store', [JobseekerController::class, 'store'])->name('jobseeker.store');
@@ -104,9 +109,6 @@ Route::get('/', [DashboardController::class, 'dashboard'])->name('index.dashboar
     Route::get('jobtype', [JobTypeController::class, 'index'])->name('jobtype.index');
     Route::post('jobtype/store', [JobTypeController::class, 'store'])->name('jobtype.store');
 
-    // Route::get('/file-import', [PaymentController::class,'importView'])->name('import-view');
-    // Route::post('/import', [PaymentController::class,'import'])->name('import');
-    // Route::get('/export-users', [PaymentController::class,'exportUsers'])->name('export-users');
 
      //appointmentType
      Route::get('appointmenttype', [AppointmentTypeController::class, 'index'])->name('appointmenttype.index');
